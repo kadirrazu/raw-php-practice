@@ -4,6 +4,10 @@
 
 require("app/app.php");
 
-$data =  get_data();
+$terms = get_terms();
 
-view("index", $data);
+$view_data = [
+    'title' => 'Glossary : Home Page'
+];
+
+view("index", $terms);
