@@ -1,5 +1,18 @@
 <?php
 
+//Find out search result, if matched
+function get_search_terms($string){
+    $items = get_terms();
+
+    $results = array_filter($items, function($item) use($string){
+        if( strpos($item->term, $string) !== false || strpos($item->defination, $string) ){
+            return $item;
+        }
+    });
+
+    return $results;
+}
+
 //Get a single term as per query string provided
 function get_term($term){
     $terms = get_terms();
