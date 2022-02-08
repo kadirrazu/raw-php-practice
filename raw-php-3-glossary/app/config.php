@@ -5,5 +5,6 @@ const CONFIG = [
     "users" => [
         "admin@url.com" => "123456",
         "kadirrazu@github.com" => "123456"
-    ]
+    ],
+    "restrict_msg" => "Please login to access restricted area.",
 ];

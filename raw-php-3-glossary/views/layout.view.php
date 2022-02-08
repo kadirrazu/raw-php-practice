@@ -10,6 +10,8 @@
   </head>
   <body>
 
+  <?php if(isset($view_data['navbar']) && $view_data['navbar'] === true): ?>
+
   <header class="p-3 bg-dark text-white">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -18,16 +20,25 @@
             <!--<li><a href="#" class="nav-link px-2 text-white">Features</a></li>-->
           </ul>
 
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="index.php" method="GET">
-            <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-          </form>
-
+          <?php if(!is_logged_in()): ?>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="index.php" method="GET">
+              <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form>
+          <?php endif; ?>
+          
           <div class="text-end">
-            <button type="button" class="btn btn-outline-light me-2">Login</button>
+            <?php if(!is_logged_in()): ?>
+              <a href="login.php" class="btn btn-outline-light me-2">Login</a>
+            <?php else: ?>
+              <a href="logout.php" class="btn btn-outline-light me-2">Logout</a>
+            <?php endif; ?>
           </div>
+
         </div>
       </div>
     </header>
+
+    <?php endif; ?>
 
     <div class="container">
         <div class="row">

@@ -1,6 +1,12 @@
 <?php
 
+session_start();
+
 require("../app/app.php");
+
+if(!is_logged_in()){
+    redirect_for_login();
+}
 
 if( is_post() ){
     if(empty($_POST['term']) || empty($_POST['defination'])){
@@ -14,9 +20,7 @@ if( is_post() ){
     }
 }
 
-//Pack an array with TEXT parameters
-$view_data = [
-    'title' => 'Glossary Admin: Create a Term'
-];
+//Pack a view_data array with TEXT parameters
+set_page_title("Glossary Admin: Create a Term");
 
 view( "admin/create");

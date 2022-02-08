@@ -1,11 +1,15 @@
 <?php
 
+session_start();
+
 require("../app/app.php");
 
-//Pack an array with TEXT parameters
-$view_data = [
-    'title' => 'Glossary Admin: Delete a Term'
-];
+if(!is_logged_in()){
+    redirect_for_login();
+}
+
+//Pack a view_data array with TEXT parameters
+set_page_title("Glossary Admin: Delete a Term");
 
 if( is_get() ){
 

@@ -21,11 +21,9 @@ if(isset($_GET['search'])){
 }
 
 //Pack an array with TEXT parameters
-$view_data = [
-    'title' => 'Glossary',
-    'isSearch' => $is_search,
-    'queryString' => $query_string
-];
+$view_data['title'] = 'Glossary';
+$view_data['isSearch'] = $is_search;
+$view_data['queryString'] = $query_string;
 
 //Load the view and pass the model in it
 view("index", $terms);

@@ -16,8 +16,7 @@ if(!$data){
     die();
 }
 
-$view_data = [
-    "title" => "Glossary : Details for \"$data->term\""
-];
+//Pack an array with TEXT parameters
+$view_data['title'] = "Glossary : Details for \"$data->term\"";
 
 view("details", $data);
