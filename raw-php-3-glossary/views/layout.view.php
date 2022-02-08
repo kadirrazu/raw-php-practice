@@ -6,7 +6,7 @@
     <title>Page - <?= $view_data['title']; ?></title>   
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/raw-php-practice/assets/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
 

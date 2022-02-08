@@ -1,14 +1,1 @@
-[
-    {
-        "term" : "css",
-        "defination" : "Cascading Style Sheet"
-    },
-    {
-        "term" : "js",
-        "defination" : "JavaScript"
-    },
-    {
-        "term" : "php",
-        "defination" : "Hypertext Preprocessor"
-    }
-]
+[{"term":"CSS3","defination":"Cascading Style Sheet (Version 3.0)"},{"term":"php","defination":"Hypertext Preprocessor"},{"term":"json","defination":"Javascript Object Notation"},{"term":"UNO","defination":"Upazila Nirbahi Officer"},{"term":"UAO","defination":"Upazila Account Officer"}]

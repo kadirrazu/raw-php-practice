@@ -52,3 +52,57 @@ function get_data(){
 
     return $json;
 }
+
+//Add a new term
+function add_term($term, $defination){
+    $data = get_terms();
+    $new_data = [
+        "term" => $term,
+        "defination" => $defination
+    ];
+
+    $object = (object) $new_data;
+
+    $data[] = $object;
+
+    set_terms($data);
+}
+
+//Add a new term to the file
+function set_terms($data){
+    $fname = CONFIG['data_file'];
+    $json = json_encode($data);
+    file_put_contents($fname, $json);
+}
+
+//Update a term
+function update_term($old_term, $new_term, $defination){
+    
+    $terms = get_terms();
+
+    foreach($terms as $item){
+        if($item->term == $old_term){
+            $item->term = $new_term;
+            $item->defination = $defination;
+            break;
+        }
+    }
+
+    set_terms($terms);
+
+}
+
+//Function for deleting a term
+function delete_term($key){
+    $terms = get_terms();
+
+    for($i=0; $i < count($terms); $i++){
+        if($terms[$i]->term == $key){
+            unset($terms[$i]);
+        }
+    }
+
+    $refreshly_indexed_terms = array_values($terms);
+
+    set_terms($refreshly_indexed_terms);
+}
