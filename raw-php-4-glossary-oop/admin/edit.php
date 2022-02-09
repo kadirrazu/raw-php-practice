@@ -20,7 +20,7 @@ if( is_get() ){
         die();
     }
 
-    $data = get_term($key);
+    $data = Data::get_term($key);
 
     if($data === false){
         view("404");
@@ -39,7 +39,7 @@ if( is_post() ){
         $new_term = sanitize($_POST['term']);
         $defination = sanitize($_POST['defination']);
         $old_term = sanitize($_POST['original-term']);
-        update_term($old_term, $new_term, $defination);
+        Data::update_term($old_term, $new_term, $defination);
         redirect("index");
     }
 }

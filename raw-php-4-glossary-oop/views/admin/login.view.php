@@ -7,6 +7,7 @@
 
     <div class="row  justify-content-center">
         <div class="col-4">
+            
             <form action="" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
@@ -17,7 +18,9 @@
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
+                <a href="../index.php" class="btn btn-secondary">Back</a>
             </form>
+
             <?php if(if_flash_msg()) : ?>
                 <div class="text-danger text-center mt-3">
                     <strong>
@@ -28,6 +31,7 @@
                     </strong>
                 </div>
             <?php endif; ?>
+
         </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //Controller File. This file will contain only logical parts. No view statements here.
 
 //Load all required partial files
@@ -14,7 +16,7 @@ $query_string = "";
 
 //If search query is set ON, then replace DATA with search result
 if(isset($_GET['search'])){
-    $search_query = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
+    $search_query = sanitize($_GET['search']);
     $terms = get_search_terms( $search_query );
     $is_search = 1;
     $query_string = $search_query;

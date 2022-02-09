@@ -20,7 +20,7 @@ if( is_get() ){
         die();
     }
 
-    $data = get_term($key);
+    $data = Data::get_term($key);
 
     if($data === false){
         view("404");
@@ -37,7 +37,7 @@ if( is_post() ){
     }
     else{
         $delete_term = sanitize($_POST['delete-term']);
-        delete_term($delete_term);
+        Data::delete_term($delete_term);
         redirect("index");
     }
 }

@@ -15,7 +15,7 @@ if( is_post() ){
     else{
         $term = sanitize($_POST['term']);
         $defination = sanitize($_POST['defination']);
-        add_term($term, $defination);
+        Data::add_term($term, $defination);
         redirect("index");
     }
 }

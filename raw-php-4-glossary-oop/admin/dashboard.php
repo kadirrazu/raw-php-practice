@@ -11,4 +11,4 @@ if(!is_logged_in()){
 //Pack a view_data array with TEXT parameters
 set_page_title("Administrator Dashboard");
 
-view( "admin/index", get_terms() );
+view( "admin/index", Data::get_terms() );
