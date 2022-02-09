@@ -15,9 +15,31 @@
         </div>
     </div>
 
+    
+    <?php if(if_flash_msg()) : ?>
+        <div class="text-success text-center mt-3">
+            <strong>
+            <?php 
+                echo get_flash_msg(); 
+                delete_flash_msg(); 
+            ?>
+            </strong>
+        </div>
+    <?php endif; ?>
+
     <div class="row">
         <h5>Existing Terms: </h5>
         <?php if(count($data) > 0) : ?>
+            <?php 
+                usort($data, function ($a, $b) {
+                    return $a->term <=> $b->term;
+                });    
+            ?>
+
+            <div class="text-info text-center">
+                <h6>Total Terms: <?php echo count($data); ?> </65> 
+            </div>
+            
             <table class="table table-striped">
                 <?php foreach($data as $terms) : ?>
                     <tr>

@@ -10,6 +10,17 @@
 
     <div class="row">
         <?php if(count($data) > 0) : ?>
+
+            <?php 
+                usort($data, function ($a, $b) {
+                    return $a->term <=> $b->term;
+                });    
+            ?>
+
+            <div class="text-info text-center">
+                <h6>Total Terms: <?php echo count($data); ?> </65> 
+            </div>
+
             <table class="table table-striped">
                 <?php foreach($data as $terms) : ?>
                     <tr>

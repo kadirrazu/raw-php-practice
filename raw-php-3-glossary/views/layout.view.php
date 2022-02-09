@@ -28,7 +28,7 @@
           
           <div class="text-end">
             <?php if(!is_logged_in()): ?>
-              <a href="login.php" class="btn btn-outline-light me-2">Login</a>
+              <a href="admin/login.php" class="btn btn-outline-light me-2">Login</a>
             <?php else: ?>
               <a href="logout.php" class="btn btn-outline-light me-2">Logout</a>
             <?php endif; ?>
