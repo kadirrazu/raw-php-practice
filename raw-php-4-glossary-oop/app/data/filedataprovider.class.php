@@ -1,12 +1,8 @@
-<?php 
+<?php
 
 require("glossaryterm.class.php");
 
-class FileDataProvider{
-    
-    function __construct($file_path){
-        $this->file_path = $file_path;
-    }
+class FileDataProvider extends DataProvider{
     
     //Find out search result, if matched
     public function get_search_terms($string){
@@ -40,21 +36,6 @@ class FileDataProvider{
         return json_decode($json);
     }
 
-    //Get JSON data as TEXTS from mentioned file.
-    private function get_data(){
-
-        $json = "";
-
-        if(!file_exists($this->file_path)){
-            file_put_contents($this->file_path, "");
-        }
-        else{
-            $json = file_get_contents($this->file_path);
-        }
-
-        return $json;
-    }
-
     //Add a new term in our data array. Data array holds array of term objects
     public function add_term($term, $defination){
         
@@ -64,12 +45,6 @@ class FileDataProvider{
 
         $this->set_terms($data);
 
-    }
-
-    //Add a new term to the file
-    private function set_terms($data){
-        $json = json_encode($data);
-        file_put_contents($this->file_path, $json);
     }
 
     //Update a term
@@ -103,4 +78,26 @@ class FileDataProvider{
 
         $this->set_terms($refreshly_indexed_terms);
     }
+
+    //Get JSON data as TEXTS from mentioned file.
+    private function get_data(){
+
+        $json = "";
+
+        if(!file_exists($this->source)){
+            file_put_contents($this->source, "");
+        }
+        else{
+            $json = file_get_contents($this->source);
+        }
+
+        return $json;
+    }
+
+    //Add a new term to the file
+    private function set_terms($data){
+        $json = json_encode($data);
+        file_put_contents($this->source, $json);
+    }
+
 }

@@ -18,7 +18,7 @@
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
-                <a href="../index.php" class="btn btn-secondary">Back</a>
+                <a href="../index.php" class="btn btn-secondary">Back to FrontEnd</a>
             </form>
 
             <?php if(if_flash_msg()) : ?>
