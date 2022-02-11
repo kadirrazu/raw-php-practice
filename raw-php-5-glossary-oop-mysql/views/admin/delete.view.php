@@ -10,7 +10,7 @@
             <div class="text-danger mb-3 mt-3">
                 Are you sure, You want to delete the term: <strong>"<?= $data->term ?>"</strong> ?
             </div>
-            <input type="hidden" name="delete-term" value="<?= $data->term ?>">
+            <input type="hidden" name="delete-term" value="<?= $data->id ?>">
             <button type="submit" class="btn btn-primary">Yes, Delete</button>
             <a href="index.php" class="btn btn-info">Back</a>
         </form>

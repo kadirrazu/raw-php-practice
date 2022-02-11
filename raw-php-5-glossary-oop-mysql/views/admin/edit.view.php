@@ -7,7 +7,7 @@
 
     <div class="row">
         <form action="" method="POST">
-            <input type="hidden" name="original-term" value="<?= $data->term ?>">
+            <input type="hidden" name="original-term" value="<?= $data->id ?>">
             <div class="mb-3">
                 <label for="term" class="form-label">Email address</label>
                 <input type="text" class="form-control" id="term" name="term" value="<?= $data->term ?>">
