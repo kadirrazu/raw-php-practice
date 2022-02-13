@@ -1,5 +1,6 @@
 <?php
 
+//Base DataProvider class. This class will be inherited in implementing child class
 class DataProvider{
 
     function __construct(public $source, public $db_username, public $db_password) {}

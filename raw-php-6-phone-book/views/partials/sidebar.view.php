@@ -8,19 +8,11 @@
 				</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="add-entry.php">
+				<a class="nav-link" href="add-contact.php">
 				  <span data-feather="file"></span>
 				  Add Entry
 				</a>
 			  </li>
-              <!--
-			  <li class="nav-item">
-				<a class="nav-link" href="#">
-				  <span data-feather="shopping-cart"></span>
-				  Products
-				</a>
-			  </li>
-              -->
 			</ul>
 		  </div>
 		</nav>

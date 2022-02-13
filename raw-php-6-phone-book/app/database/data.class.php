@@ -2,6 +2,8 @@
 
 require('dataprovider.class.php');
 
+
+/* Static Class for accessing DataProvider and it's child's methods easily */
 class Data{
 
     static private $ds;

@@ -1,55 +1,35 @@
 <?php
 
+//Main class for dealing with MySQL database
 class MySqlDataProvider extends DataProvider{
 
+    //Get all contacts
     public function get_contacts(){
 
-        $db = $this->connect($this->db_username, $this->db_password);
-
-        if($db == null){
-            return [];
-        }
-
         $sql = 'SELECT * FROM contacts ORDER BY title ASC';
-
-        $smt = $db->prepare($sql);
-
-        $smt->execute();
-
-        $data = $smt->fetchAll();
-
-        $smt = null;
-        $db = null;
+      
+        $data = $this->perform_db_query($sql);
 
         return $data;
 
     }
 
+    //Get a single contact based on provided $id
     public function get_contact($id){
-
-        $db = $this->connect($this->db_username, $this->db_password);
-
-        if($db == null){
-            return [];
-        }
 
         $sql = 'SELECT * FROM contacts WHERE id = :id';
 
-        $smt = $db->prepare($sql);
-
-        $smt->execute([
+        $param = [
             ':id' => $id
-        ]);
+        ];
 
-        $data = $smt->fetchAll();
-
-        $smt = null;
-        $db = null;
+        $data = $this->perform_db_query($sql, $param);
 
         return $data;
 
     }
 
+    //Add a new contact to 'contacts' table
     public function add_contact($post = []){
             
         if(count($post) > 0){
@@ -60,31 +40,24 @@ class MySqlDataProvider extends DataProvider{
         }
     }
 
+    //Search for a contact with supplied $search string
     public function search_contact($search){
-
-        $db = $this->connect($this->db_username, $this->db_password);
-
-        if($db == null){
-            return [];
-        }
 
         $sql = 'SELECT * FROM contacts WHERE title LIKE :search OR designation LIKE :search OR mobile LIKE :search OR telephone LIKE :search or email LIKE :search';
 
-        $smt = $db->prepare($sql);
-
-        $smt->execute([
+        $param = [
             ':search' => '%'.$search.'%'
-        ]);
+        ];
 
-        $data = $smt->fetchAll();
-
-        $smt = null;
-        $db = null;
+        $data = $this->perform_db_query($sql, $param);
 
         return $data;
 
     }
 
+    //Edit a contact
+    //$id is the existing contact's ID
+    //$post is an array of Updated Information
     public function edit_contact($id, $post = []){
         
         if(count($post) > 0){
@@ -96,80 +69,102 @@ class MySqlDataProvider extends DataProvider{
         
     }
 
+    //Delete a contact from 'contacts' table based on provided $id
     public function delete_contact($id){
-
-        $db = $this->connect($this->db_username, $this->db_password);
-
-        if($db == null){
-            return [];
-        }
 
         $sql = 'DELETE FROM contacts WHERE id = :id';
 
-        $smt = $db->prepare($sql);
-
-        $smt->execute([
+        $param = [
             ':id' => $id
-        ]);
+        ];
 
-        $smt = null;
-        $db = null;
-
+        $this->perform_db_execute($sql, $param);
+        
     }
 
+    //DB Connection and DB object
     private function connect($username, $password){
-        return new PDO($this->source, $username, $password);
+        try{
+            return new PDO($this->source, $username, $password);
+        }catch(PDOException $e){
+            echo "Database Error: " . $e->getMessage();
+            die();
+        }
     }
 
+    //Save a contact to the database table 'contacts'
     private function save_contact($array){
-
-        $db = $this->connect($this->db_username, $this->db_password);
-
-        if($db == null){
-            return;
-        }
 
         $sql = 'INSERT INTO contacts (title, designation, mobile, telephone, email) VALUES (:title, :designation, :mobile, :telephone, :email)';
 
-        $smt = $db->prepare($sql);
-
-        $smt->execute([
+        $param = [
             ':title' => $array['title'],
             ':designation' => $array['designation'],
             ':mobile' => $array['mobile'],
             ':telephone' => $array['telephone'],
             ':email' => $array['email']
-        ]);
+        ];
 
-        $smt = null;
-        $db = null;
+        $this->perform_db_execute($sql, $param);
 
     }
 
+    //Update an existing contact
     private function update_contact($id, $post){
-
-        $db = $this->connect($this->db_username, $this->db_password);
-
-        if($db == null){
-            return;
-        }
 
         $sql = 'UPDATE contacts SET title = :title, designation = :designation, mobile = :mobile, telephone = :telephone, email = :email WHERE id = :id';
 
-        $smt = $db->prepare($sql);
-
-        $smt->execute([
+        $param = [
             ':title' => $post['title'],
             ':designation' => $post['designation'],
             ':mobile' => $post['mobile'],
             ':telephone' => $post['telephone'],
             ':email' => $post['email'],
             ':id' => $id
-        ]);
+        ];
+
+        $this->perform_db_execute($sql, $param);
+
+    }
+
+    //Perform a DB query with supplied $sql and it's $parameter
+    //Will return contacts array after performing the query
+    private function perform_db_query($sql, $parameter = []){
+
+        $db = $this->connect($this->db_username, $this->db_password);
+
+        if($db == null){
+            return;
+        }
+
+        $smt = $db->prepare($sql);
+
+        $smt->execute($parameter);
+
+        $data = $smt->fetchAll();
+
+        $smt = null;
+        $db = null;
+
+        return $data;
+    }
+
+    //Perform an DB execute task. No data will be returned
+    private function perform_db_execute($sql, $parameter = []){
+
+        $db = $this->connect($this->db_username, $this->db_password);
+
+        if($db == null){
+            return;
+        }
+
+        $smt = $db->prepare($sql);
+
+        $smt->execute($parameter);
 
         $smt = null;
         $db = null;
 
     }
 
-}
+} //End of the CLASS

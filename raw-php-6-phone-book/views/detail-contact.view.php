@@ -24,6 +24,7 @@
             <td colspan="2">
                 <a class="btn btn-secondary" href="edit-contact.php?contact_id=<?= $model['id'] ?>">Edit</a>
                 <a class="btn btn-danger" href="delete-contact.php?contact_id=<?= $model['id'] ?>">Delete</a>
+                <a class="btn btn-primary" href="dashboard.php">Back</a>
             </td>
         </tr>
     </table>

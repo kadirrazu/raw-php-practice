@@ -13,8 +13,7 @@
     </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/rawphp-phone-book/views/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/rawphp-phone-book/views/assets/css/dashboard.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
